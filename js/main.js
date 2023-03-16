@@ -20,18 +20,12 @@ javascripttestcaselist.innerHTML = testcaseItems;
 
 //Go to solve challenge field
 let solveChallenge = function(id){
-	headernav.innerHTML = "";
 	sessionStorage.setItem("isTestCase", 1);
 	sessionStorage.setItem("jsTestCaseId", id);
 	maincodewrap.classList.toggle("active-wrap");
 	testcasecontentwrap.classList.toggle("active-wrap");
 	const setTestId = sessionStorage.getItem("jsTestCaseId");
-	headernav.innerHTML += `<nav class="top-navbar" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '|';">
-							  <ol class="breadcrumb">
-							    <li class="breadcrumb-item"><a href="#" onclick="testCaseFun()">Test Cases</a></li>
-							    <li class="breadcrumb-item active" aria-current="page">Solve challenge</li>
-							  </ol>
-							</nav>`
+	loadHeaderNav();
 	setTestCase(setTestId);
 }
 
@@ -49,11 +43,23 @@ let useOnLoad = function () {
  let setTestId = sessionStorage.getItem("jsTestCaseId");
 
 	if(getIsTestCase == 1){
+		
 		maincodewrap.classList.toggle("active-wrap");
 		testcasecontentwrap.classList.toggle("active-wrap");
+		loadHeaderNav();
 		setTestCase(setTestId);
 	}
 };
+
+let loadHeaderNav = function(){
+	headernav.innerHTML = "";
+	headernav.innerHTML += `<nav class="top-navbar" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '|';">
+							  <ol class="breadcrumb">
+							    <li class="breadcrumb-item"><a href="#" onclick="testCaseFun()">Test Cases</a></li>
+							    <li class="breadcrumb-item active" aria-current="page">Solve challenge</li>
+							  </ol>
+							</nav>`
+}
 window.onload = useOnLoad();
 
 
