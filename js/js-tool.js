@@ -35,7 +35,7 @@ let getTestCase;
 	}
 	
 	function testCaseInstance(testCaseIns){
-		console.log(testCaseIns)
+		
 		_testlisttable = "";
 		let _testTitle = "";
 		let _titleOfTh1 = "", _titleOftbl = "", _titleOftr = "", _dv = "";
@@ -76,7 +76,7 @@ let getTestCase;
 			return `<tr>${_td1}</tr>`;
 
 		}).join("");
-		return _testlisttable = `<table id="testlisttable">${_testTitle} ${_listRow}</table>`;
+		return _testlisttable = `<table id="testlisttable"><caption>Testcase Instance: </caption> ${_testTitle} ${_listRow}</table>`;
 	}
 	
 	function loadJs(){
@@ -136,7 +136,7 @@ let getTestCase;
 		 			_tbl += `<table width="100%"><tr>${_td3}</tr></table>`;
 		 			_td2 += `<td class='params-td'>${_tbl}</td>`;	
 		 		}else{
-		 			if(item["expected-output"] === item["actual-output"]){
+		 			if(JSON.stringify(item["expected-output"]).trim().replace(/\s/g,"") === JSON.stringify(item["actual-output"]).trim().replace(/\s/g,"")){
 		 				statusIcon = `<i class="fa fa-check successIcon" aria-hidden="true"></i>`;
 		 			}else {
 		 				statusIcon = `<i class="fa fa-times unsuccessIcon" aria-hidden="true"></i>`;
