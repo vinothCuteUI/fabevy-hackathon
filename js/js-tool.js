@@ -15,18 +15,18 @@ let testcaseDetailsWrap = document.getElementById("testcase-details-wrap");
 let getTestCase;
 
 	function setTestCase(id){
+		console.log(id);
 		let _instanceData = [];
 		testcaseDetailsWrap.innerHTML = "";
 		getTestCase = null;
 		getTestCase = testCasesData.find(item => item.id === id);
-		// console.log(getTestCase)
 		_funName.innerText = getTestCase.testCasefun;
 		_funArg.innerText = getTestCase.testCaseParams.join(", ");
 		testCase = [...getTestCase.testCaseList];
 		let setTestCaseDetails = `
 			<h2>${getTestCase.testcaseTitle}</h2>
 			<p>${getTestCase.testCaseDetails}</p>
-
+			<h4>Testcase Instance</h4>
 		`;
 		for(let i = 0; i < 2; i++){
 			_instanceData.push({...getTestCase.testCaseList[i]});
@@ -36,7 +36,7 @@ let getTestCase;
 	
 	function testCaseInstance(testCaseIns){
 		
-		_testlisttable = "";
+		let _testcaseInstancetbl = "";
 		let _testTitle = "";
 		let _titleOfTh1 = "", _titleOftbl = "", _titleOftr = "", _dv = "";
 
@@ -76,7 +76,8 @@ let getTestCase;
 			return `<tr>${_td1}</tr>`;
 
 		}).join("");
-		return _testlisttable = `<table id="testlisttable"><caption>Testcase Instance: </caption> ${_testTitle} ${_listRow}</table>`;
+		
+		return _testcaseInstancetbl = `<table id="testcaseInstance">${_testTitle} ${_listRow}</table>`;
 	}
 	
 	function loadJs(){
@@ -99,11 +100,13 @@ let getTestCase;
 	
 
 	function loadListTestCase(testDatalist){
+		console.log(testDatalist);
 		_testlisttable.innerHTML = "";
 		let _testTitle = "";
 		let _titleOfTh1 = "", _titleOfTh2 = "", _titleOftbl = "", _titleOftr = "", _dv = "";
 
 		_titleOfTh1 = `<th>Test Case</th>`;
+		console.log(testDatalist[0])
 		for(let key in testDatalist[0]){
 			if(key === 'inputs'){
 				let paramTh = testDatalist[0][key];
@@ -154,6 +157,7 @@ let getTestCase;
 
 		}).join("");
 		_testlisttable.innerHTML = `${_testTitle} ${_listRow}`;
+		console.log(_testlisttable)
 	}
 
 	//Validate logical code data
