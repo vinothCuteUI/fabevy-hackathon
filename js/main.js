@@ -36,6 +36,8 @@ let testCaseFun = function(){
 	sessionStorage.removeItem("jsTestCaseId");
 	maincodewrap.classList.toggle("active-wrap");
 	testcasecontentwrap.classList.toggle("active-wrap");
+	document.getElementsByClassName("testCaseList")[0].style.display = "none";
+	_codelogics.value = '';
 }
 
 let useOnLoad = function () {
