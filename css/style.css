@@ -93,7 +93,14 @@
     font-weight: 700;
     color: var(--title-txt);
 }
-
+.testcase-details-content h4{
+	font-size: 18px;
+    font-weight: 700;
+    color: var(--title-txt);
+}
+.testcase-details-content #testcaseInstance{
+	margin-top: 0;
+}
 /* ------------ Code and test case ----- */
 .code-box{
 	overflow-y: auto;
@@ -185,12 +192,12 @@
     box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
     
 }
-#testlisttable{
+#testlisttable, #testcaseInstance{
 	width: 100%;
 	border-collapse: collapse;	
 	margin-top: 40px;	
 }
-#testlisttable tr th{
+#testlisttable tr th, #testcaseInstance tr th{
 	background-color: var(--primary-color);
 	text-align: left;
 	color: #fff;
@@ -198,7 +205,8 @@
 	text-transform: capitalize;
 	vertical-align: bottom;
 }
-#testlisttable tr th, #testlisttable tr td{
+#testlisttable tr th, #testcaseInstance tr th, 
+#testlisttable tr td, #testcaseInstance tr td{
 	border: solid 1px #ccc;
 	padding: 5px 10px;
 	/*position: relative;*/
@@ -231,6 +239,8 @@
 	background: #ff0000;
 }
 
+#testcaseInstance tr > .params-th, 
+#testcaseInstance tr > .params-td,
 #testlisttable tr > .params-th, 
 #testlisttable tr > .params-td{
 	padding: 0;
@@ -238,18 +248,22 @@
 .params-th > div{
 	padding: 10px;
 }
+#testcaseInstance tr > .params-th table tr td.testparamstitle:nth-child(1),
 #testlisttable tr > .params-th table tr td.testparamstitle:nth-child(1){
 	border-width: 1px 0 0 0px;
 	width: 150px;
 }
+#testcaseInstance tr > .params-th table tr td.testparamstitle:nth-child(2),
 #testlisttable tr > .params-th table tr td.testparamstitle:nth-child(2){
 	border-width: 1px 0 0 1px;
 	width: 150px;
 }
+#testcaseInstance tr > .params-td table tr td.testparams:nth-child(1),
 #testlisttable tr > .params-td table tr td.testparams:nth-child(1){
 	border-width: 0px 0 0 0px;
 	width: 150px;
 }
+#testcaseInstance tr > .params-td table tr td.testparams:nth-child(2),
 #testlisttable tr > .params-td table tr td.testparams:nth-child(2){
 	border-width: 0px 0 0 1px;
 	width: 150px;
