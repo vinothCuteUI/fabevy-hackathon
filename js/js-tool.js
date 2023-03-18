@@ -140,13 +140,25 @@ let getTestCase;
 		 			_tbl += `<table width="100%"><tr>${_td3}</tr></table>`;
 		 			_td2 += `<td class='params-td'>${_tbl}</td>`;	
 		 		}else{
-		 			if(item["actual-output"] !== null){
-		 				outputError.innerHTML = "";
+		 			console.log(item["actual-output"])
+		 			if(item["actual-output"] !== undefined){
+		 				//outputError.innerHTML = "Test Case Status";
 
 		 				if(JSON.stringify(item["expected-output"]).trim().replace(/\s/g,"") === JSON.stringify(item["actual-output"]).trim().replace(/\s/g,"")){
 			 				statusIcon = `<i class="fa fa-check successIcon" aria-hidden="true"></i>`;
 			 			}else {
 			 				statusIcon = `<i class="fa fa-times unsuccessIcon" aria-hidden="true"></i>`;
+			 			}
+			 			if(key !== "actual-output"){
+			 				_td2 += `<td class='testcasetd'>${JSON.stringify(testDatalist[inx][key])}</td>`;
+			 			}else{
+			 				_td2 += `<td class='actualSatustd'>${JSON.stringify(testDatalist[inx][key])} ${statusIcon}</td>`;
+			 			}	
+		 			}else{
+		 				if(item["actual-output"] === null || item["actual-output"] === undefined || item["actual-output"] === '' ){
+			 				statusIcon = `<i class="fa fa-times unsuccessIcon" aria-hidden="true"></i>`;
+			 			}else {
+			 				statusIcon = `<i class="fa fa-times successIcon" aria-hidden="true"></i>`;
 			 			}
 			 			if(key !== "actual-output"){
 			 				_td2 += `<td class='testcasetd'>${JSON.stringify(testDatalist[inx][key])}</td>`;
@@ -194,7 +206,7 @@ let getTestCase;
 				
 				return item;
 			}) 
-
+			console.log(runStatus)
 			var getCodeSatus = loadListTestCase(runStatus);
 		`;
 		document.body.appendChild(script);
@@ -206,21 +218,21 @@ let getTestCase;
 	// _validateCodetest.addEventListener("click", validateCode.bind(null, codeLogicNode))
 
 
-window.addEventListener("error", (ErrorEvent) => {
+// window.addEventListener("error", (ErrorEvent) => {
 	
-	// Print the error message
-	outputError.innerHTML += "Message : " + ErrorEvent.message + "<br>";
+// 	// Print the error message
+// 	outputError.innerHTML += "Message : " + ErrorEvent.message + "<br>";
  
-	// Print the url of the file that contains the error
-	outputError.innerHTML += "Url : " + ErrorEvent.filename + "<br>";
+// 	// Print the url of the file that contains the error
+// 	outputError.innerHTML += "Url : " + ErrorEvent.filename + "<br>";
  
-	// Print the line number from which the error generated
-	outputError.innerHTML += "Line number : " + ErrorEvent.lineno + "<br>";
+// 	// Print the line number from which the error generated
+// 	outputError.innerHTML += "Line number : " + ErrorEvent.lineno + "<br>";
 	 
-	// Print the column number of the error line
-	outputError.innerHTML += "Column number : " + ErrorEvent.colno + "<br>";
+// 	// Print the column number of the error line
+// 	outputError.innerHTML += "Column number : " + ErrorEvent.colno + "<br>";
  
- 	// Print he error object
- 	outputError.innerHTML += "Error Object : " + ErrorEvent.error;
-})
+//  	// Print he error object
+//  	outputError.innerHTML += "Error Object : " + ErrorEvent.error;
+// })
 
