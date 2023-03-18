@@ -7,7 +7,7 @@ const testCasesData = [
 		testCaseList:[
 			{
 				"inputs":{
-					'a':[5, 8, 6, 7, 6],
+					'a':[5, 8, 6, 7, 6, 6],
 				},
 				"expected-output":1,
 				"actual-output":null
@@ -149,7 +149,7 @@ const testCasesData = [
 				"inputs":{
 					'a':[4, 6, 7, 9, 1, 10],
 				},
-				"expected-output":[7, 9, 1],
+				"expected-output":[7, 1],
 				"actual-output":null
 
 			},
@@ -181,7 +181,7 @@ const testCasesData = [
 				"inputs":{
 					'a':[4, 9, 7, 20, 47, 16],
 				},
-				"expected-output":[9, 7, 47],
+				"expected-output":[7, 47],
 				"actual-output":null
 
 			}

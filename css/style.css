@@ -245,6 +245,16 @@
 #testlisttable tr > .params-td{
 	padding: 0;
 }
+.params-td{
+	position: relative;
+}
+.params-td table{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 .params-th > div{
 	padding: 10px;
 }
@@ -267,4 +277,9 @@
 #testlisttable tr > .params-td table tr td.testparams:nth-child(2){
 	border-width: 0px 0 0 1px;
 	width: 150px;
+}
+
+#result{
+	padding: 20px;
+	margin-top: 60px;
 }

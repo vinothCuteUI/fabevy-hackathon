@@ -12,10 +12,11 @@ let _testlisttable = document.getElementById("testlisttable");
 let _testTitle = document.getElementById("testTitle");
 let _validateCodetest = document.getElementById("validateCodetest");
 let testcaseDetailsWrap = document.getElementById("testcase-details-wrap");
+let outputError = document.getElementById("result");
 let getTestCase;
 
 	function setTestCase(id){
-		console.log(id);
+	
 		let _instanceData = [];
 		testcaseDetailsWrap.innerHTML = "";
 		getTestCase = null;
@@ -100,13 +101,13 @@ let getTestCase;
 	
 
 	function loadListTestCase(testDatalist){
-		console.log(testDatalist);
+		// console.log(testDatalist);
 		_testlisttable.innerHTML = "";
 		let _testTitle = "";
 		let _titleOfTh1 = "", _titleOfTh2 = "", _titleOftbl = "", _titleOftr = "", _dv = "";
 
 		_titleOfTh1 = `<th>Test Case</th>`;
-		console.log(testDatalist[0])
+		// console.log(testDatalist[0])
 		for(let key in testDatalist[0]){
 			if(key === 'inputs'){
 				let paramTh = testDatalist[0][key];
@@ -139,16 +140,21 @@ let getTestCase;
 		 			_tbl += `<table width="100%"><tr>${_td3}</tr></table>`;
 		 			_td2 += `<td class='params-td'>${_tbl}</td>`;	
 		 		}else{
-		 			if(JSON.stringify(item["expected-output"]).trim().replace(/\s/g,"") === JSON.stringify(item["actual-output"]).trim().replace(/\s/g,"")){
-		 				statusIcon = `<i class="fa fa-check successIcon" aria-hidden="true"></i>`;
-		 			}else {
-		 				statusIcon = `<i class="fa fa-times unsuccessIcon" aria-hidden="true"></i>`;
+		 			if(item["actual-output"] !== null){
+		 				outputError.innerHTML = "";
+
+		 				if(JSON.stringify(item["expected-output"]).trim().replace(/\s/g,"") === JSON.stringify(item["actual-output"]).trim().replace(/\s/g,"")){
+			 				statusIcon = `<i class="fa fa-check successIcon" aria-hidden="true"></i>`;
+			 			}else {
+			 				statusIcon = `<i class="fa fa-times unsuccessIcon" aria-hidden="true"></i>`;
+			 			}
+			 			if(key !== "actual-output"){
+			 				_td2 += `<td class='testcasetd'>${JSON.stringify(testDatalist[inx][key])}</td>`;
+			 			}else{
+			 				_td2 += `<td class='actualSatustd'>${JSON.stringify(testDatalist[inx][key])} ${statusIcon}</td>`;
+			 			}	
 		 			}
-		 			if(key !== "actual-output"){
-		 				_td2 += `<td class='testcasetd'>${JSON.stringify(testDatalist[inx][key])}</td>`;
-		 			}else{
-		 				_td2 += `<td class='actualSatustd'>${JSON.stringify(testDatalist[inx][key])} ${statusIcon}</td>`;
-		 			}
+		 			
 		 			
 		 		}
 			}
@@ -157,7 +163,8 @@ let getTestCase;
 
 		}).join("");
 		_testlisttable.innerHTML = `${_testTitle} ${_listRow}`;
-		console.log(_testlisttable)
+		// console.log(_testlisttable)
+
 	}
 
 	//Validate logical code data
@@ -197,4 +204,23 @@ let getTestCase;
 	_validateBtn.addEventListener("click", loadJs);
 	// _addTestBtn.addEventListener("click", addtestcase);
 	// _validateCodetest.addEventListener("click", validateCode.bind(null, codeLogicNode))
+
+
+window.addEventListener("error", (ErrorEvent) => {
+	
+	// Print the error message
+	outputError.innerHTML += "Message : " + ErrorEvent.message + "<br>";
+ 
+	// Print the url of the file that contains the error
+	outputError.innerHTML += "Url : " + ErrorEvent.filename + "<br>";
+ 
+	// Print the line number from which the error generated
+	outputError.innerHTML += "Line number : " + ErrorEvent.lineno + "<br>";
+	 
+	// Print the column number of the error line
+	outputError.innerHTML += "Column number : " + ErrorEvent.colno + "<br>";
+ 
+ 	// Print he error object
+ 	outputError.innerHTML += "Error Object : " + ErrorEvent.error;
+})
 
